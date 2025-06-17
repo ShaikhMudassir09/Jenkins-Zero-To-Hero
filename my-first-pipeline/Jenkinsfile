@@ -1,12 +1,17 @@
 pipeline {
-  agent {
-    docker { image 'node:16-alpine' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                sh 'javac Hello_world.java'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh 'java Hello_world'
+            }
+        }
     }
-  }
 }
